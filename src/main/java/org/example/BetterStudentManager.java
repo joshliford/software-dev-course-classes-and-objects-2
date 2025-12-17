@@ -12,10 +12,20 @@ public class BetterStudentManager {
 
     public void addStudent(String name, double grade) {
         // This method should add a new student to the list of students
+        Student student = new Student();
+        student.name = name;
+        student.grade = grade;
+        students.add(student);
     }
 
     public void removeStudent(String name) {
         // This method should remove the student with the given name from the list of students
+        for (Student student : students) {
+            if (student.name.equalsIgnoreCase(name)) {
+                students.remove(student);
+                return;
+            }
+        }
     }
 
     public String getStudentList() {
@@ -28,7 +38,13 @@ public class BetterStudentManager {
         // You will need to use a String or StringBuilder to build the result by
         // looping through the list of students
         //
-        // Replace the following line with your implementation
-        return null;
+        StringBuilder builder = new StringBuilder();
+        for (Student student : students) {
+            builder.append(student.name);
+            builder.append(" ");
+            builder.append(student.grade);
+            builder.append('\n');
+        }
+        return builder.toString();
     }
 }
